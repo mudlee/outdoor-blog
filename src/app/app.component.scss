@@ -1,0 +1,29 @@
+.header {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  box-shadow: 1px 0px 40px 0px rgb(0 0 0 / 15%);
+
+  button {
+    position: fixed;
+    top: 30px;
+    right: 30px;
+
+    &.light-mode {
+      color: #ffed4a;
+    }
+  }
+}
+
+.main-container {
+  display: grid;
+  grid-template-columns: [left-panel] 1fr [main-content] 3fr;
+  width: 80%;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 126px;
+
+  img {
+    width: 100%;
+  }
+}

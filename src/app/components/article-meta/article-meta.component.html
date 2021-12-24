@@ -1,0 +1,6 @@
+<h2 class="mb-0">{{ title }}</h2>
+<div class="text-muted">{{ date | date:'long' }}</div>
+<p class="mt-3 text-justify" [innerHTML]="meta"></p>
+<p>
+  <a mat-button [href]="'articles/'+id">Read More &raquo;</a>
+</p>
