@@ -8,11 +8,20 @@ import { AppComponent } from './app.component';
 
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
+import { MatChipsModule } from '@angular/material/chips';
 import { ArticleMetasDirective } from './directives/article-metas.directive';
 import { ArticleMetaComponent } from './components/article-meta/article-meta.component';
+import { HomeComponent } from './components/home/home.component';
+import { ArticleComponent } from './components/article/article.component';
 
 @NgModule({
-  declarations: [AppComponent, ArticleMetasDirective, ArticleMetaComponent],
+  declarations: [
+    AppComponent,
+    ArticleMetasDirective,
+    ArticleMetaComponent,
+    HomeComponent,
+    ArticleComponent,
+  ],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -20,6 +29,7 @@ import { ArticleMetaComponent } from './components/article-meta/article-meta.com
     HttpClientModule,
     MatIconModule,
     MatButtonModule,
+    MatChipsModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

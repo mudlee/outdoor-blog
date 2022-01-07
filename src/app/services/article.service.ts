@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { map, Observable } from 'rxjs';
+import { Converter } from 'showdown';
 import { ArticleMeta, Article } from '../models/article';
 
 @Injectable({ providedIn: 'root' })
@@ -14,15 +15,16 @@ export class ArticleService {
   get(id: string): Observable<Article> {
     return this.http
       .get(`assets/articles/${id}.md`, { responseType: 'text' })
-      .pipe(
-        map((markdown) => {
-          console.log(markdown);
-          return {
-            title: 'a',
-            date: new Date(),
-            article: 'Nasa: <a href="http://nasa.gov">Nasa</a>',
-          };
-        })
-      );
+      .pipe(map((markdown) => this.parseMarkdown(markdown)));
+  }
+
+  private parseMarkdown(md: string): Article {
+    const parts = md.split('----------------------------------');
+    return {
+      title: parts[0],
+      date: new Date(parts[1]),
+      tags: parts[2].split(','),
+      article: new Converter().makeHtml(parts[3]),
+    };
   }
 }

@@ -1,5 +1,5 @@
 <div class="header mat-app-background">
-  <h1 class="text-center my-5">Outdoor</h1>
+  <h1 class="text-center my-5" (click)="onHeaderClick()">Mudlee's Outdoor Activities</h1>
   <button
     mat-icon-button
     [class.dark-mode]="theme==='light'"
@@ -11,8 +11,8 @@
   </button>
 </div>
 <div class="main-container">
-  <div>Sidebar</div>
+  <div>Majd itt is lesz valami...</div>
   <div>
-    <ng-template appArticleMetas></ng-template>
+    <router-outlet></router-outlet>
   </div>
 </div>

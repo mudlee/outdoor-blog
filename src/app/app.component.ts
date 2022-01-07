@@ -1,8 +1,6 @@
 import { DOCUMENT } from '@angular/common';
-import { Component, Inject, OnInit, ViewChild } from '@angular/core';
-import { tap } from 'rxjs';
-import { ArticleMetasDirective } from './directives/article-metas.directive';
-import { ArticleService } from './services/article.service';
+import { Component, Inject, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -11,17 +9,9 @@ import { ArticleService } from './services/article.service';
 })
 export class AppComponent implements OnInit {
   private static readonly DARK_THEME_CLASS = 'dark-theme';
-
-  @ViewChild(ArticleMetasDirective, { static: true })
-  appArticleMetas!: ArticleMetasDirective;
-
-  title = 'outdoor-mudlee-hu';
   theme: 'dark' | 'light';
 
-  constructor(
-    @Inject(DOCUMENT) private readonly document: Document,
-    private readonly articleService: ArticleService
-  ) {
+  constructor(@Inject(DOCUMENT) private readonly document: Document, private readonly router: Router) {
     this.theme = this.isDarkTheme() ? 'dark' : 'light';
   }
 
@@ -29,13 +19,6 @@ export class AppComponent implements OnInit {
     if (new Date().getHours() >= 19) {
       this.setDark();
     }
-
-    this.articleService
-      .getMetas()
-      .pipe(tap((metas) => this.appArticleMetas.addArticles(metas)))
-      .subscribe();
-
-    this.articleService.get('test').subscribe((a) => console.log(a));
   }
 
   toggleTheme(): void {
@@ -44,6 +27,10 @@ export class AppComponent implements OnInit {
     } else {
       this.setDark();
     }
+  }
+
+  onHeaderClick(): void {
+    this.router.navigateByUrl('/');
   }
 
   private setDark(): void {
